@@ -19,23 +19,21 @@
   <meta name="author" content="Mcldy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于MWOS，最新的MWOS README">
+    <meta name="description" content="Blog使用的音乐Api">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MWOS">
-<meta property="og:url" content="https://mcldy.github.io/2026/02/06/MWOS/index.html">
+<meta property="og:title" content="Blog使用的音乐Api">
+<meta property="og:url" content="https://mcldy.github.io/2026/02/07/Blog%E4%BD%BF%E7%94%A8%E7%9A%84MusicApi/index.html">
 <meta property="og:site_name" content="MLBlog">
-<meta property="og:description" content="关于MWOS，最新的MWOS README">
+<meta property="og:description" content="Blog使用的音乐Api">
 <meta property="og:locale">
-<meta property="og:image" content="https://mcldy.github.io/images/MWOS.png">
-<meta property="article:published_time" content="2026-02-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-06T15:46:06.868Z">
+<meta property="article:published_time" content="2026-02-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-07T07:54:06.520Z">
 <meta property="article:author" content="Mcldy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mcldy.github.io/images/MWOS.png">
   
   
   
-  <title>MWOS - MLBlog</title>
+  <title>Blog使用的音乐Api - MLBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MWOS"></span>
+            <span id="subtitle" data-typed-text="Blog使用的音乐Api"></span>
           
         </div>
 
@@ -221,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-06 00:00" pubdate>
-          February 6, 2026 am
+        <time datetime="2026-02-07 00:00" pubdate>
+          February 7, 2026 am
         </time>
       </span>
     
@@ -233,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          748 字
+          2.2k 字
         
       </span>
     
@@ -244,7 +242,7 @@
         
         
         
-          7 分钟
+          18 分钟
         
       </span>
     
@@ -281,12 +279,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MWOS</h1>
+            <h1 id="seo-header">Blog使用的音乐Api</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-02-06T23:46:06+08:00
+                    本文最后更新于 2026-02-07T15:54:06+08:00
                   
                   
 
@@ -296,82 +294,170 @@
             
               <div class="markdown-body">
                 
-                <p><img src="/images/MWOS.png" srcset="/img/loading.gif" lazyload alt="Logo"></p>
-<h1 id="MWOS"><a href="#MWOS" class="headerlink" title="MWOS"></a>MWOS</h1><h3 id="全自研的UEFI操作系统"><a href="#全自研的UEFI操作系统" class="headerlink" title="全自研的UEFI操作系统"></a>全自研的UEFI操作系统</h3><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="你需要准备以下工具："><a href="#你需要准备以下工具：" class="headerlink" title="你需要准备以下工具："></a>你需要准备以下工具：</h3><p><code>Clang</code><br><code>NASM</code><br><code>MTools</code><br><code>Linker</code><br><code>Objcopy</code><br><code>OVMF</code></p>
-<p><strong>可选</strong><br><code>QEMU</code><br><code>Bochs</code><br><code>VMWare</code></p>
-<h3 id="在项目根目录下运行："><a href="#在项目根目录下运行：" class="headerlink" title="在项目根目录下运行："></a>在项目<strong>根目录</strong>下运行：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">make clean<br>make<br></code></pre></td></tr></table></figure>
+                <h1 id="🎵-Music-API-文档（基于-Cloudflare-Worker）"><a href="#🎵-Music-API-文档（基于-Cloudflare-Worker）" class="headerlink" title="🎵 Music API 文档（基于 Cloudflare Worker）"></a>🎵 Music API 文档（基于 Cloudflare Worker）</h1><p>本 API 提供统一的音乐数据访问接口，支持多平台（当前为 <strong>bilibili</strong> 与 <strong>netease</strong>）。<br>所有接口均返回 JSON，且支持跨域（<code>Access-Control-Allow-Origin: *</code>）。</p>
+<hr>
+<h1 id="📌-基础信息"><a href="#📌-基础信息" class="headerlink" title="📌 基础信息"></a>📌 基础信息</h1><ul>
+<li><strong>Base URL</strong>：<code>https://mbma.my20130910.workers.dev</code></li>
+<li><strong>响应格式</strong>：<code>application/json; charset=utf-8</code></li>
+<li><strong>跨域支持</strong>：是</li>
+<li><strong>错误格式统一</strong>：</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;error message&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="不想自己编译-编译不了？"><a href="#不想自己编译-编译不了？" class="headerlink" title="不想自己编译&#x2F;编译不了？"></a>不想自己编译&#x2F;编译不了？</h3><p>在Actions里面找最新的Artifacts，下载即可。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><h3 id="使用QEMU运行"><a href="#使用QEMU运行" class="headerlink" title="使用QEMU运行"></a>使用QEMU运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">qemu-system-x86_64 -m 1024 -drive file=os-image.img,format=raw -bios OVMF.fd<br></code></pre></td></tr></table></figure>
-<p>替换<code>os-image</code>为你编译&#x2F;下载的镜像<br>替换<code>OVMF.fd</code>为你的OVMF</p>
-<h3 id="使用Bochs运行"><a href="#使用Bochs运行" class="headerlink" title="使用Bochs运行"></a>使用Bochs运行</h3><p>由于部分原因，bochs无法加载uefi固件，所以无法运行</p>
-<h3 id="OVMF下载"><a href="#OVMF下载" class="headerlink" title="OVMF下载"></a>OVMF下载</h3><p><code>https://github.com/clearlinux/common/raw/refs/heads/master/OVMF.fd</code><br>或者在Actions里面找最新的Artifacts，下载即可</p>
-<h2 id="待办事项"><a href="#待办事项" class="headerlink" title="待办事项"></a>待办事项</h2><table>
+<hr>
+<h1 id="📚-API-列表"><a href="#📚-API-列表" class="headerlink" title="📚 API 列表"></a>📚 API 列表</h1><table>
 <thead>
 <tr>
-<th>功能</th>
-<th>状态</th>
-<th>备注</th>
+<th>方法</th>
+<th>路径</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>UEFI启动</td>
-<td>已完成</td>
-<td>无</td>
+<td>GET</td>
+<td><code>/search</code></td>
+<td>搜索歌曲&#x2F;视频</td>
 </tr>
 <tr>
-<td>进入内核</td>
-<td>已完成</td>
-<td>无</td>
+<td>GET</td>
+<td><code>/song</code></td>
+<td>获取歌曲播放信息（APlayer 友好）</td>
 </tr>
 <tr>
-<td>图形显示</td>
-<td>已完成</td>
-<td>无</td>
-</tr>
-<tr>
-<td>图形界面</td>
-<td>已完成</td>
-<td>无</td>
-</tr>
-<tr>
-<td>内存管理</td>
-<td>已完成</td>
-<td>无</td>
-</tr>
-<tr>
-<td>磁盘操作</td>
-<td>已完成</td>
-<td>速度很慢，尤其是计算Free Space。只支持IDE控制器</td>
-</tr>
-<tr>
-<td>文件系统</td>
-<td>已完成</td>
-<td>只支持F32</td>
-</tr>
-<tr>
-<td>键鼠驱动</td>
-<td>已完成</td>
-<td>只支持PS&#x2F;2</td>
-</tr>
-<tr>
-<td>高半区内核</td>
-<td>已完成</td>
-<td>无</td>
-</tr>
-<tr>
-<td>Ring0 -&gt; Ring3</td>
-<td>已完成</td>
-<td>无</td>
-</tr>
-<tr>
-<td>可执行文件</td>
-<td>编写中</td>
-<td>MFX，现在缺少重定位器</td>
+<td>GET</td>
+<td><code>/lyric</code></td>
+<td>获取歌词</td>
 </tr>
 </tbody></table>
-<h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><h3 id="undefined404offical（被李大爷颗秒的UD404）"><a href="#undefined404offical（被李大爷颗秒的UD404）" class="headerlink" title="undefined404offical（被李大爷颗秒的UD404）"></a>undefined404offical（被李大爷颗秒的UD404）</h3><p>邮箱：<a href="mailto:&#x77;&#46;&#x73;&#99;&#x2e;&#50;&#48;&#50;&#x32;&#64;&#111;&#117;&#x74;&#x6c;&#111;&#111;&#107;&#46;&#99;&#x6f;&#109;">w.sc.2022@outlook.com</a><br>QQ: 2480340196<br>B站：UID:3546599963756811</p>
-<h3 id="McLDY（突发恶疾的李大爷）"><a href="#McLDY（突发恶疾的李大爷）" class="headerlink" title="McLDY（突发恶疾的李大爷）"></a>McLDY（突发恶疾的李大爷）</h3><p>邮箱：<a href="mailto:&#x6d;&#x63;&#108;&#100;&#x79;&#x30;&#x30;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#x6b;&#46;&#99;&#x6f;&#109;">mcldy00@outlook.com</a><br>QQ：3777426705<br>B站：UID:3546599963756811</p>
+<hr>
+<h1 id="🎯-1-搜索接口-search"><a href="#🎯-1-搜索接口-search" class="headerlink" title="🎯 1. 搜索接口 /search"></a>🎯 1. 搜索接口 <code>/search</code></h1><h3 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a><strong>请求方式</strong></h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /search?<span class="hljs-attribute">keyword</span>=xxx&amp;page=1&amp;source=bilibili<br></code></pre></td></tr></table></figure>
+
+<h3 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a><strong>请求参数</strong></h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>keyword</code></td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+<td>搜索关键词</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>number</td>
+<td>否</td>
+<td><code>1</code></td>
+<td>页码（从 1 开始）</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>bilibili</code></td>
+<td>数据源：<code>bilibili</code> 或 <code>netease</code></td>
+</tr>
+</tbody></table>
+<h3 id="成功返回示例"><a href="#成功返回示例" class="headerlink" title="成功返回示例"></a><strong>成功返回示例</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;BVxxxx&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;歌曲标题&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;artist&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;作者&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;cover&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://...&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;bilibili&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;isEnd&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠ 注意：不同平台返回字段可能略有差异，但 Worker 不做二次加工，直接返回插件结果。</p>
+</blockquote>
+<h3 id="错误返回"><a href="#错误返回" class="headerlink" title="错误返回"></a><strong>错误返回</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;keyword required&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;some error message&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="🎯-2-获取歌曲-song"><a href="#🎯-2-获取歌曲-song" class="headerlink" title="🎯 2. 获取歌曲 /song"></a>🎯 2. 获取歌曲 <code>/song</code></h1><h3 id="请求方式-1"><a href="#请求方式-1" class="headerlink" title="请求方式"></a><strong>请求方式</strong></h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /song?<span class="hljs-attribute">id</span>=xxx&amp;quality=standard&amp;source=bilibili<br></code></pre></td></tr></table></figure>
+
+<h3 id="请求参数-1"><a href="#请求参数-1" class="headerlink" title="请求参数"></a><strong>请求参数</strong></h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+<td>歌曲 ID（平台原始 ID）</td>
+</tr>
+<tr>
+<td><code>quality</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>standard</code></td>
+<td>音质（由插件决定是否支持）</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>bilibili</code></td>
+<td>数据源：<code>bilibili</code> 或 <code>netease</code></td>
+</tr>
+</tbody></table>
+<h3 id="成功返回示例（APlayer-友好）"><a href="#成功返回示例（APlayer-友好）" class="headerlink" title="成功返回示例（APlayer 友好）"></a><strong>成功返回示例（APlayer 友好）</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1954890276&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://music.163.com/song/media/outer/url?id=1954890276.mp3&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;歌曲名&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;artist&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;歌手&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;cover&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://...&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;lrc&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;歌词文本&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠ 注意：  </p>
+<ul>
+<li>B 站返回的 <code>url</code> 可能是 <code>.m4s</code>（DASH），浏览器无法直接播放。  </li>
+<li>网易云外链可能不稳定（偶尔 404 &#x2F; HTML）。  </li>
+<li>Worker 不做任何代理或修复，只返回插件结果。</li>
+</ul>
+</blockquote>
+<h3 id="错误返回-1"><a href="#错误返回-1" class="headerlink" title="错误返回"></a><strong>错误返回</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxx&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;TypeError: xxx&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="🎯-3-获取歌词-lyric"><a href="#🎯-3-获取歌词-lyric" class="headerlink" title="🎯 3. 获取歌词 /lyric"></a>🎯 3. 获取歌词 <code>/lyric</code></h1><h3 id="请求方式-2"><a href="#请求方式-2" class="headerlink" title="请求方式"></a><strong>请求方式</strong></h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /lyric?<span class="hljs-attribute">id</span>=xxx&amp;source=netease<br></code></pre></td></tr></table></figure>
+
+<h3 id="请求参数-2"><a href="#请求参数-2" class="headerlink" title="请求参数"></a><strong>请求参数</strong></h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+<td>歌曲 ID</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>否</td>
+<td><code>bilibili</code></td>
+<td>数据源</td>
+</tr>
+</tbody></table>
+<h3 id="成功返回示例-1"><a href="#成功返回示例-1" class="headerlink" title="成功返回示例"></a><strong>成功返回示例</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;raw&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;[00:00.00]歌词内容&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;translation&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;[00:00.00]翻译内容&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="错误返回-2"><a href="#错误返回-2" class="headerlink" title="错误返回"></a><strong>错误返回</strong></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;raw&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;translation&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;some error&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="⚠-全局错误处理"><a href="#⚠-全局错误处理" class="headerlink" title="⚠ 全局错误处理"></a>⚠ 全局错误处理</h1><p>Worker 捕获所有异常并返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;error message&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>状态码为 <code>500</code>。</p>
 
                 
               </div>
@@ -389,8 +475,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MWOS</div>
-      <div>https://mcldy.github.io/2026/02/06/MWOS/</div>
+      <div>Blog使用的音乐Api</div>
+      <div>https://mcldy.github.io/2026/02/07/Blog使用的MusicApi/</div>
     </div>
     <div class="license-meta">
       
@@ -402,13 +488,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>February 6, 2026</div>
+          <div>February 7, 2026</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>February 6, 2026</div>
+          <div>February 7, 2026</div>
         </div>
       
       
@@ -451,18 +537,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/02/07/Blog%E4%BD%BF%E7%94%A8%E7%9A%84MusicApi/" title="Blog使用的音乐Api">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Blog使用的音乐Api</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/06/%E5%85%B3%E4%BA%8EBlog/" title="关于Blog">
-                        <span class="hidden-mobile">关于Blog</span>
+                      <a href="/2026/02/06/MWOS/" title="MWOS">
+                        <span class="hidden-mobile">MWOS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
