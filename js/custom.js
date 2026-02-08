@@ -18,8 +18,9 @@ document.getElementById("music-search").addEventListener("keydown", async (e) =>
     const keyword = e.target.value.trim();
     if (!keyword) return;
 
-    // 搜索时带上 source
-    const res = await fetch(`${API}/search?keyword=${encodeURIComponent(keyword)}&source=${DEFAULT_SOURCE === 1 ? "bilibili" : "netease"}`)
+    const source = DEFAULT_SOURCE === 1 ? "bilibili" : "netease";
+
+    const res = await fetch(`${API}/search?keyword=${encodeURIComponent(keyword)}&source=${source}`)
         .then(r => r.json())
         .catch(() => null);
 
@@ -28,17 +29,6 @@ document.getElementById("music-search").addEventListener("keydown", async (e) =>
     ap.list.clear();
 
     for (const song of res.data) {
-
-        // 每个 song 必须带 source
-        const source = song.source || (DEFAULT_SOURCE === 1 ? "bilibili" : "netease");
-
-        // 获取歌曲 URL
-        const songRes = await fetch(`${API}/song?id=${song.id}&source=${source}`)
-            .then(r => r.json())
-            .catch(() => null);
-console.log("SONG API RESULT:", song.id, song.source, songRes);
-
-        if (!songRes || !songRes.url) continue; // URL 无效就跳过
 
         // 获取歌词（只有网易云有）
         let lyric = "";
@@ -49,13 +39,14 @@ console.log("SONG API RESULT:", song.id, song.source, songRes);
 
             lyric = lyricRes?.raw || "";
         } else {
-            lyric = "很抱歉，B站没有歌词这玩意"; // B 站默认歌词
+            lyric = "很抱歉，B站没有歌词这玩意";
         }
 
+        // 关键：播放 Worker 的 /stream
         ap.list.add({
             name: song.title,
             artist: song.artist,
-            url: songRes.url,
+            url: `${API}/stream?id=${song.id}&source=${source}`,
             cover: song.artwork || "",
             lrc: lyric
         });
