@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>报纸中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  :root {
+    --primary: #0078ff;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --radius: 12px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* 满屏容器 */
+  .wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .top {
+    padding: 12px 16px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  h1 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  #searchBox {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .tab {
+    padding: 8px 14px;
+    background: #eee;
+    border-radius: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .tab.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .issue-card {
+    background: var(--card-bg);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  }
+
+  .issue-card a {
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="top">
+    <h1>报纸中心</h1>
+    <input id="searchBox" placeholder="搜索报社或期数…">
+    <div class="tabs" id="tabs"></div>
+  </div>
+
+  <div class="content" id="paperContainer">加载中...</div>
+
+</div>
+
+<script>
+let NEWS_DATA = {};
+let CURRENT_PAPER = null;
+
+function renderTabs() {
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+
+  Object.keys(NEWS_DATA).forEach(name => {
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.textContent = name;
+
+    tab.onclick = () => {
+      CURRENT_PAPER = name;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderIssues(name);
+    };
+
+    tabs.appendChild(tab);
+  });
+
+  const first = tabs.querySelector('.tab');
+  if (first) {
+    first.classList.add('active');
+    CURRENT_PAPER = first.textContent;
+  }
+}
+
+function renderIssues(paperName) {
+  const container = document.getElementById('paperContainer');
+  container.innerHTML = '';
+
+  NEWS_DATA[paperName].forEach(issue => {
+    const card = document.createElement('div');
+    card.className = 'issue-card';
+
+    const link = document.createElement('a');
+    link.href = issue.link;
+    link.textContent = issue.n;
+
+    card.appendChild(link);
+    container.appendChild(card);
+  });
+}
+
+function applySearch() {
+  const keyword = document.getElementById('searchBox').value.trim();
+  const container = document.getElementById('paperContainer');
+  container.innerHTML = '';
+
+  if (!keyword) {
+    renderIssues(CURRENT_PAPER);
+    return;
+  }
+
+  Object.keys(NEWS_DATA).forEach(paper => {
+    NEWS_DATA[paper].forEach(issue => {
+      if (paper.includes(keyword) || issue.n.includes(keyword)) {
+        const card = document.createElement('div');
+        card.className = 'issue-card';
+
+        const link = document.createElement('a');
+        link.href = issue.link;
+        link.textContent = `${paper} - ${issue.n}`;
+
+        card.appendChild(link);
+        container.appendChild(card);
+      }
+    });
+  });
+}
+
+document.getElementById('searchBox').addEventListener('input', applySearch);
+
+fetch('/news/news.json')
+  .then(res => res.json())
+  .then(data => {
+    NEWS_DATA = data;
+    renderTabs();
+    renderIssues(CURRENT_PAPER);
+  })
+  .catch(err => {
+    document.getElementById('paperContainer').innerHTML = '加载失败：' + err;
+  });
+</script>
+
+</body>
+</html>
